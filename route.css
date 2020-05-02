@@ -58,8 +58,13 @@ footer {
   font-family: 'Kosugi Maru', sans-serif;
 }
 
-.mem > input{
+.mem>input {
   padding: 0.01em;
   margin: 0.01em;
   border-radius: 0.1em;
+}
+
+.nomalFont {
+  color: #000000;
+  text-decoration: none;
 }
