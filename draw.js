@@ -1,4 +1,4 @@
-let zoomLevel = 1;
+let zoomLevel = localStorage.getItem('routeAsstZoomLevel') || 1;
 
 const stations = {
   omishiotsu: { name: "近江塩津", x: 900, y: 20 },
@@ -193,8 +193,9 @@ function drawRoute(area) {
 }
 
 function zoom(area, zoomOffset = 0){
-  zoomLevel += zoomOffset;
+  zoomLevel -= (-zoomOffset);
   save('tmp', 0, routes);
   drawRoute(area);
   load('tmp', 0, routes);
+  localStorage.setItem('routeAsstZoomLevel', zoomLevel);
 }
