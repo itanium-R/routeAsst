@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width , initial-scale=1 , maximum-scale=1">
   <title>大阪近郊区間経路アシスタント</title>
   <link rel="stylesheet" href="route.css">
+  <script type="text/javascript" src="draw.js"></script>
+  <script type="text/javascript" src="zoom.js"></script>
+  <script type="text/javascript" src="mem.js"></script>
+  <script type="text/javascript">
+    window.onload = () => { areaName = "kansai"; drawRoute(); }
+  </script>
 </head>
 
 <body>
@@ -16,10 +22,6 @@
     <div id="route" class="route">
     </div>
   </section>
-  <script type="text/javascript" src="draw.js"></script>
-  <script type="text/javascript">
-    window.onload = () => { areaName = "kansai"; drawRoute(); }
-  </script>
 
   <footer>
     <div class="mem">
@@ -37,7 +39,6 @@
       <input type="button" value="+" class="mem" onclick="zoom(+0.1);">
       <input type="button" value="-" class="mem" onclick="zoom(-0.1);">
     </div>
-    <script type="text/javascript" src="mem.js"></script>
     <div>
       <a href="./" class="nomalFont">経路アシスタント[大阪近郊]</a>
     </div>
