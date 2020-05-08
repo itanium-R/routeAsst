@@ -1,4 +1,5 @@
 let zoomLevel = localStorage.getItem('routeAsstZoomLevel') || 1;
+let areaName;
 
 const stations = {
   omishiotsu: { name: "近江塩津", x: 900, y: 20 },
@@ -112,10 +113,10 @@ const routes = [
   { id: "sanyo9", color: "#0071be", st: ["hyogo", "wadamisaki"] },
 ];
 
-function drawRoute(area) {
-  const areaElm = document.getElementById(area);
+function drawRoute() {
+  const areaElm = document.getElementById("route");
   areaElm.innerHTML = "";
-  areaElm.style.width = areaWidths[area] * zoomLevel + "px";
+  areaElm.style.width = areaWidths[areaName] * zoomLevel + "px";
   for (k of routes) {
     let line = document.createElement("div");
     line.id = k.id;
@@ -192,10 +193,39 @@ function drawRoute(area) {
   }
 }
 
-function zoom(area, zoomOffset = 0){
+// zoom処理
+// cf: https://gist.github.com/cognitom/de11ba8cf4f4b98ac8ab
+let pinching = false;
+let d0 = 1;
+let d1 = 1;
+document.addEventListener("touchmove", function (e) {
+  if (e.touches.length == 2) {
+    if (!pinching) {
+      pinching = true;
+      d0 = Math.sqrt(
+        Math.pow(e.touches[1].screenX - e.touches[0].screenX, 2) +
+        Math.pow(e.touches[1].screenY - e.touches[0].screenY, 2)
+      );
+    } else {
+      d1 = Math.sqrt(
+        Math.pow(e.touches[1].screenX - e.touches[0].screenX, 2) +
+        Math.pow(e.touches[1].screenY - e.touches[0].screenY, 2)
+      );
+      let magnif = d1 / d0;
+      if(magnif > 1.5) zoom(+0.1);
+      if(magnif < 0.7) zoom(-0.1);
+    }
+  }
+});
+
+document.addEventListener("touchend", function (e) {
+  pinching = false;
+});
+
+function zoom(zoomOffset = 0) {
   zoomLevel -= (-zoomOffset);
-  save('tmp', 0, routes);
-  drawRoute(area);
-  load('tmp', 0, routes);
+  save(areaName, 0, routes);
+  drawRoute();
+  load(areaName, 0, routes);
   localStorage.setItem('routeAsstZoomLevel', zoomLevel);
 }
