@@ -68,3 +68,9 @@ footer {
   color: #000000;
   text-decoration: none;
 }
+
+#selector {
+  max-width: 20em;
+  margin: auto;
+  font-size: 2em;
+}
