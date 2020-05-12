@@ -32,9 +32,9 @@
         <option value="3">3</option>
       </select>
       <input type="button" value="save" class="mem"
-        onclick="save('kansai', document.getElementById('memSelector').value, routes);">
+        onclick="save(document.getElementById('memSelector').value);">
       <input type="button" value="load" class="mem"
-        onclick="load('kansai', document.getElementById('memSelector').value, routes);">
+        onclick="load(document.getElementById('memSelector').value);">
       <input type="button" value="init" class="mem" onclick="init(routes);">
       <input type="button" value="+" class="mem" onclick="zoom(+0.1);">
       <input type="button" value="-" class="mem" onclick="zoom(-0.1);">
