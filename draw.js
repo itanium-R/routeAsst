@@ -159,6 +159,7 @@ function drawRoute() {
       } else {
         t.style.backgroundColor = "#EEE"
       }
+      save(0);
     };
     line.style.borderRadius = "10px";
     line.addEventListener("click", fillColor);

@@ -30,8 +30,8 @@ document.addEventListener("touchend", function (e) {
 
 function zoom(zoomOffset = 0) {
   zoomLevel -= (-zoomOffset);
-  save(areaName, 0, routes);
+  save(0);
   drawRoute();
-  load(areaName, 0, routes);
+  load(0);
   localStorage.setItem('routeAsstZoomLevel', zoomLevel);
 }

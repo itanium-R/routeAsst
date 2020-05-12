@@ -1,4 +1,4 @@
-function save(area, mId, routes) {
+function save(mId) {
   let fullSelectedLines = [];
   for (let rObj of routes) {
     let rElm = document.getElementById(rObj.id);
@@ -7,12 +7,12 @@ function save(area, mId, routes) {
       fullSelectedLines.push(rObj.id);
     }
   }
-  localStorage.setItem('routeAsst' + area + mId, JSON.stringify(fullSelectedLines));
+  localStorage.setItem('routeAsst' + areaName + mId, JSON.stringify(fullSelectedLines));
 }
 
-function load(area, mId, routes) {
+function load(mId) {
   let fullSelectedLines = [];
-  fullSelectedLines = JSON.parse(localStorage.getItem('routeAsst' + area + mId) || '[]');
+  fullSelectedLines = JSON.parse(localStorage.getItem('routeAsst' + areaName + mId) || '[]');
   for (let rObj of routes) {
     let rId = rObj.id;
     let rElm = document.getElementById(rId);
@@ -22,12 +22,14 @@ function load(area, mId, routes) {
       rElm.style.backgroundColor = "#EEE";
     }
   }
+  save(0);
 }
 
-function init(routes){
+function init() {
   for (let rObj of routes) {
     let rId = rObj.id;
     let rElm = document.getElementById(rId);
     rElm.style.backgroundColor = "#EEE";
   }
+  save(0);
 }
